@@ -1,0 +1,12 @@
+{
+	"TITLE": "Índice UV",
+	"LOADING": "Cargando datos UV...",
+	"NO_DATA": "No hay datos UV disponibles",
+	"MISSING_COORDS": "Por favor configure latitud y longitud",
+	"FETCH_ERROR": "Error al obtener datos UV",
+	"LOW": "Bajo",
+	"MODERATE": "Moderado",
+	"HIGH": "Alto",
+	"VERY_HIGH": "Muy Alto",
+	"EXTREME": "Extremo"
+}

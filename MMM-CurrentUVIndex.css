@@ -1,0 +1,82 @@
+.MMM-CurrentUVIndex .uv-index-wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	font-size: 16px;
+	line-height: 1.5;
+}
+
+.MMM-CurrentUVIndex .uv-current {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin-bottom: 4px;
+}
+
+.MMM-CurrentUVIndex .uv-icon {
+	font-size: 18px;
+	opacity: 0.6;
+}
+
+.MMM-CurrentUVIndex .uv-label {
+	opacity: 0.6;
+	margin-right: 4px;
+}
+
+.MMM-CurrentUVIndex .uv-value {
+	font-weight: 400;
+	font-size: 18px;
+	margin-right: 8px;
+}
+
+.MMM-CurrentUVIndex .uv-status {
+	font-size: 14px;
+	opacity: 0.8;
+	padding: 2px 6px;
+	border-radius: 3px;
+}
+
+.MMM-CurrentUVIndex .uv-low {
+	color: #4CAF50;
+}
+
+.MMM-CurrentUVIndex .uv-moderate {
+	color: #FFC107;
+}
+
+.MMM-CurrentUVIndex .uv-high {
+	color: #FF9800;
+}
+
+.MMM-CurrentUVIndex .uv-very-high {
+	color: #F44336;
+}
+
+.MMM-CurrentUVIndex .uv-extreme {
+	color: #9C27B0;
+}
+
+.MMM-CurrentUVIndex .uv-forecast {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	margin-top: 8px;
+	padding-top: 8px;
+	border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.MMM-CurrentUVIndex .uv-forecast-day {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	font-size: 14px;
+}
+
+.MMM-CurrentUVIndex .uv-forecast-label {
+	opacity: 0.6;
+	min-width: 30px;
+}
+
+.MMM-CurrentUVIndex .uv-forecast-value {
+	font-weight: 400;
+}

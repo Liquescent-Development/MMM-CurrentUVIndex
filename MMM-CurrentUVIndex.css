@@ -21,8 +21,9 @@
 }
 
 .MMM-CurrentUVIndex .uv-label {
-	opacity: 0.6;
+	opacity: 0.8;
 	margin-right: 4px;
+	color: #999;
 }
 
 .MMM-CurrentUVIndex .uv-value {
@@ -69,18 +70,16 @@
 	height: 8px;
 	border-radius: 4px;
 	background: linear-gradient(to right, 
-		#4CAF50 0%,     /* Low (0-2) */
-		#4CAF50 18.18%, 
-		#FFC107 18.18%, /* Moderate (3-5) */
-		#FFC107 45.45%,
-		#FF9800 45.45%, /* High (6-7) */
-		#FF9800 63.63%,
-		#F44336 63.63%, /* Very High (8-10) */
-		#F44336 90.9%,
-		#9C27B0 90.9%,  /* Extreme (11+) */
-		#9C27B0 100%
+		#4CAF50 0%,     /* Low */
+		#8BC34A 20%,
+		#FFC107 35%,    /* Moderate */
+		#FF9800 50%,    /* High */
+		#FF5722 65%,
+		#F44336 80%,    /* Very High */
+		#E91E63 90%,
+		#9C27B0 100%    /* Extreme */
 	);
-	opacity: 0.8;
+	opacity: 0.9;
 }
 
 .MMM-CurrentUVIndex .uv-spectrum-indicator {
@@ -100,7 +99,8 @@
 	justify-content: space-between;
 	margin-top: 4px;
 	font-size: 10px;
-	opacity: 0.5;
+	opacity: 1;
+	color: #666;
 }
 
 /* Hourly forecast styles */
@@ -113,8 +113,8 @@
 	margin-top: 0;
 	padding-top: 10px;
 	padding-bottom: 10px;
-	border-top: 1.5px solid rgba(255, 255, 255, 0.25);
-	border-bottom: 1.5px solid rgba(255, 255, 255, 0.25);
+	border-top: 1px solid #666;
+	border-bottom: 1px solid #666;
 }
 
 .MMM-CurrentUVIndex .uv-hourly-item {
@@ -127,7 +127,8 @@
 
 .MMM-CurrentUVIndex .uv-hourly-time {
 	font-size: 14px;
-	opacity: 0.6;
+	opacity: 1;
+	color: #999;
 	text-transform: lowercase;
 }
 
@@ -158,7 +159,8 @@
 
 .MMM-CurrentUVIndex .uv-forecast-label {
 	font-size: 14px;
-	opacity: 0.6;
+	opacity: 1;
+	color: #999;
 	text-align: center;
 }
 

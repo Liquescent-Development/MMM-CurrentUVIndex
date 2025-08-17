@@ -63,11 +63,11 @@
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
-	gap: 30px;
-	width: 100%;
+	gap: 20px;
+	width: auto;
 	margin-top: 0;
-	padding-top: 12px;
-	padding-bottom: 12px;
+	padding-top: 10px;
+	padding-bottom: 10px;
 	border-top: 1.5px solid rgba(255, 255, 255, 0.1);
 	border-bottom: 1.5px solid rgba(255, 255, 255, 0.1);
 }
@@ -77,7 +77,7 @@
 	flex-direction: column;
 	align-items: center;
 	gap: 4px;
-	min-width: 45px;
+	min-width: 35px;
 }
 
 .MMM-CurrentUVIndex .uv-hourly-time {
@@ -96,9 +96,9 @@
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
-	gap: 30px;
-	width: 100%;
-	margin-top: 12px;
+	gap: 20px;
+	width: auto;
+	margin-top: 10px;
 	padding-top: 0;
 }
 
@@ -108,7 +108,7 @@
 	align-items: center;
 	gap: 4px;
 	font-size: 14px;
-	min-width: 45px;
+	min-width: 35px;
 }
 
 .MMM-CurrentUVIndex .uv-forecast-label {
@@ -124,7 +124,7 @@
 
 /* When both hourly and forecast are shown */
 .MMM-CurrentUVIndex .uv-hourly + .uv-forecast {
-	margin-top: 12px;
+	margin-top: 10px;
 }
 
 /* Compact mode adjustments */

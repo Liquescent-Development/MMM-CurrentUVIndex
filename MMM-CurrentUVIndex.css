@@ -21,8 +21,9 @@
 }
 
 .MMM-CurrentUVIndex .uv-label {
-	opacity: 0.6;
+	opacity: 0.8;
 	margin-right: 4px;
+	color: #999;
 }
 
 .MMM-CurrentUVIndex .uv-value {
@@ -58,6 +59,50 @@
 	color: #9C27B0;
 }
 
+/* UV Spectrum Bar */
+.MMM-CurrentUVIndex .uv-spectrum-container {
+	width: 200px;
+	margin: 8px auto;
+	position: relative;
+}
+
+.MMM-CurrentUVIndex .uv-spectrum-bar {
+	height: 8px;
+	border-radius: 4px;
+	background: linear-gradient(to right, 
+		#4CAF50 0%,     /* Low */
+		#8BC34A 20%,
+		#FFC107 35%,    /* Moderate */
+		#FF9800 50%,    /* High */
+		#FF5722 65%,
+		#F44336 80%,    /* Very High */
+		#E91E63 90%,
+		#9C27B0 100%    /* Extreme */
+	);
+	opacity: 0.9;
+}
+
+.MMM-CurrentUVIndex .uv-spectrum-indicator {
+	position: absolute;
+	top: -2px;
+	width: 0;
+	height: 0;
+	border-left: 4px solid transparent;
+	border-right: 4px solid transparent;
+	border-top: 6px solid #fff;
+	transform: translateX(-50%);
+	transition: left 0.3s ease;
+}
+
+.MMM-CurrentUVIndex .uv-spectrum-labels {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 4px;
+	font-size: 10px;
+	opacity: 1;
+	color: #666;
+}
+
 /* Hourly forecast styles */
 .MMM-CurrentUVIndex .uv-hourly {
 	display: flex;
@@ -68,8 +113,8 @@
 	margin-top: 0;
 	padding-top: 10px;
 	padding-bottom: 10px;
-	border-top: 1.5px solid rgba(255, 255, 255, 0.1);
-	border-bottom: 1.5px solid rgba(255, 255, 255, 0.1);
+	border-top: 1px solid #666;
+	border-bottom: 1px solid #666;
 }
 
 .MMM-CurrentUVIndex .uv-hourly-item {
@@ -82,7 +127,8 @@
 
 .MMM-CurrentUVIndex .uv-hourly-time {
 	font-size: 14px;
-	opacity: 0.6;
+	opacity: 1;
+	color: #999;
 	text-transform: lowercase;
 }
 
@@ -113,7 +159,8 @@
 
 .MMM-CurrentUVIndex .uv-forecast-label {
 	font-size: 14px;
-	opacity: 0.6;
+	opacity: 1;
+	color: #999;
 	text-align: center;
 }
 

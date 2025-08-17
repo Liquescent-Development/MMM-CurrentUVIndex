@@ -10,6 +10,7 @@ Module.register("MMM-CurrentUVIndex", {
 		showHourly: true,
 		hourlyHours: 4,
 		showIcon: true,
+		showSpectrum: true,
 		colored: true,
 		roundValue: false,
 		label: "UV INDEX",
@@ -104,6 +105,31 @@ Module.register("MMM-CurrentUVIndex", {
 		uvContainer.appendChild(statusSpan);
 
 		wrapper.appendChild(uvContainer);
+
+		// Add UV spectrum bar
+		if (this.config.showSpectrum) {
+			var spectrumContainer = document.createElement("div");
+			spectrumContainer.className = "uv-spectrum-container";
+			
+			var spectrumBar = document.createElement("div");
+			spectrumBar.className = "uv-spectrum-bar";
+			spectrumContainer.appendChild(spectrumBar);
+			
+			var indicator = document.createElement("div");
+			indicator.className = "uv-spectrum-indicator";
+			// Calculate position based on UV value (0-11 scale, cap at 11 for display)
+			var position = Math.min(currentUV / 11 * 100, 100);
+			indicator.style.left = position + "%";
+			spectrumContainer.appendChild(indicator);
+			
+			// Add scale labels
+			var labels = document.createElement("div");
+			labels.className = "uv-spectrum-labels";
+			labels.innerHTML = "<span>0</span><span>3</span><span>6</span><span>8</span><span>11+</span>";
+			spectrumContainer.appendChild(labels);
+			
+			wrapper.appendChild(spectrumContainer);
+		}
 
 		if (this.config.showHourly && this.uvData.forecast) {
 			var hourlyContainer = document.createElement("div");
@@ -209,13 +235,7 @@ Module.register("MMM-CurrentUVIndex", {
 		var now = new Date();
 		var result = [];
 		
-		// Add current hour
-		result.push({
-			time: "Now",
-			uvi: this.uvData.now.uvi
-		});
-		
-		// Get next hours from forecast
+		// Get next hours from forecast (excluding current hour)
 		var hoursAdded = 0;
 		for (var i = 0; i < forecast.length && hoursAdded < this.config.hourlyHours; i++) {
 			var forecastTime = new Date(forecast[i].time);

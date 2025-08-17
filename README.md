@@ -1,18 +1,21 @@
 # MMM-CurrentUVIndex
 
-A MagicMirror² module that displays real-time UV index data from currentuvindex.com. This module provides current UV index readings with color-coded severity levels and optional forecasts, matching the clean aesthetic of your MagicMirror display.
+A MagicMirror² module that displays real-time UV index data from currentuvindex.com. This module provides current UV index readings with color-coded severity levels, visual spectrum indicator, hourly forecasts, and optional daily forecasts, perfectly matching your MagicMirror's aesthetic.
 
-![UV Index Display Example](screenshot.png)
+![MMM-CurrentUVIndex Display](mmm-currentuvindex.png)
 
 ## Features
 
-- Real-time UV index display with automatic updates
-- Color-coded severity levels (Low, Moderate, High, Very High, Extreme)
-- Optional UV forecast for upcoming days
-- Multiple language support (English, German, Spanish, French)
-- Clean, minimalist design matching MagicMirror's default aesthetic
-- No API key required
-- Configurable update intervals
+- **Real-time UV index** display with automatic updates
+- **Visual UV spectrum bar** with position indicator showing current UV level
+- **Hourly forecast** showing next 4 hours (configurable)
+- **Daily forecast** for upcoming days (optional)
+- **Color-coded severity levels** (Low, Moderate, High, Very High, Extreme)
+- **Smooth gradient colors** for better visual appeal
+- **Multiple language support** (English, German, Spanish, French)
+- **Clean, minimalist design** matching MagicMirror's aesthetic
+- **No API key required** - uses free currentuvindex.com API
+- **Highly configurable** with many display options
 
 ## Installation
 
@@ -39,12 +42,13 @@ Add the following configuration to your `config/config.js` file:
 ```javascript
 {
     module: "MMM-CurrentUVIndex",
-    position: "top_right",
+    position: "top_center",
     config: {
         latitude: 40.6943,
         longitude: -73.9249,
-        updateInterval: 600000,
-        showForecast: false,
+        showHourly: true,
+        showForecast: true,
+        showSpectrum: true,
         colored: true
     }
 }
@@ -64,6 +68,7 @@ Add the following configuration to your `config/config.js` file:
 | `showHourly` | Show hourly UV forecast (current + next hours) | Boolean | `true` |
 | `hourlyHours` | Number of future hours to display (1-12) | Number | `4` |
 | `showIcon` | Display sun icon next to UV value | Boolean | `true` |
+| `showSpectrum` | Display visual UV spectrum bar with indicator | Boolean | `true` |
 | `colored` | Use color coding for UV levels | Boolean | `true` |
 | `roundValue` | Round UV values to nearest integer | Boolean | `false` |
 | `label` | Label text before UV value | String | `"UV INDEX"` |
@@ -203,10 +208,18 @@ Liquescent
 
 ## Changelog
 
+### Version 1.1.0
+- Added visual UV spectrum bar with position indicator
+- Smooth gradient colors for spectrum display
+- Improved color consistency with Weather Forecast module
+- Removed redundant current hour from hourly forecast
+- Enhanced separator bar visibility
+- Added showSpectrum configuration option
+
 ### Version 1.0.1
 - Improved layout for center positions
 - Added horizontal forecast display
-- Added hourly UV forecast (current + next 4 hours)
+- Added hourly UV forecast (next 4 hours)
 - Now displays real-time current UV value from API
 - Added showHourly and hourlyHours configuration options
 - Added compactMode and showHeader options

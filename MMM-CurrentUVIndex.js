@@ -7,10 +7,14 @@ Module.register("MMM-CurrentUVIndex", {
 		animationSpeed: 1000,
 		showForecast: false,
 		forecastDays: 2,
+		showHourly: true,
+		hourlyHours: 4,
 		showIcon: true,
 		colored: true,
 		roundValue: false,
-		label: "UV",
+		label: "UV INDEX",
+		compactMode: true,
+		showHeader: false,
 		appendLocationNameToHeader: false,
 		locationName: "",
 		header: ""
@@ -101,6 +105,36 @@ Module.register("MMM-CurrentUVIndex", {
 
 		wrapper.appendChild(uvContainer);
 
+		if (this.config.showHourly && this.uvData.forecast) {
+			var hourlyContainer = document.createElement("div");
+			hourlyContainer.className = "uv-hourly";
+			
+			var hourlyData = this.getHourlyForecast(this.uvData.forecast);
+			
+			hourlyData.forEach(function(hour) {
+				var hourDiv = document.createElement("div");
+				hourDiv.className = "uv-hourly-item";
+				
+				var timeSpan = document.createElement("span");
+				timeSpan.className = "uv-hourly-time";
+				timeSpan.innerHTML = hour.time;
+				hourDiv.appendChild(timeSpan);
+				
+				var valueSpan = document.createElement("span");
+				valueSpan.className = "uv-hourly-value";
+				var hourLevel = this.getUVLevel(hour.uvi);
+				if (this.config.colored) {
+					valueSpan.className += " uv-" + hourLevel.class;
+				}
+				valueSpan.innerHTML = this.config.roundValue ? Math.round(hour.uvi) : hour.uvi.toFixed(1);
+				hourDiv.appendChild(valueSpan);
+				
+				hourlyContainer.appendChild(hourDiv);
+			}.bind(this));
+			
+			wrapper.appendChild(hourlyContainer);
+		}
+
 		if (this.config.showForecast && this.uvData.forecast) {
 			var forecastContainer = document.createElement("div");
 			forecastContainer.className = "uv-forecast";
@@ -171,6 +205,39 @@ Module.register("MMM-CurrentUVIndex", {
 		return days[date.getDay()];
 	},
 
+	getHourlyForecast: function(forecast) {
+		var now = new Date();
+		var result = [];
+		
+		// Add current hour
+		result.push({
+			time: "Now",
+			uvi: this.uvData.now.uvi
+		});
+		
+		// Get next hours from forecast
+		var hoursAdded = 0;
+		for (var i = 0; i < forecast.length && hoursAdded < this.config.hourlyHours; i++) {
+			var forecastTime = new Date(forecast[i].time);
+			
+			// Only include future hours
+			if (forecastTime > now) {
+				var hours = forecastTime.getHours();
+				var ampm = hours >= 12 ? "pm" : "am";
+				hours = hours % 12;
+				hours = hours ? hours : 12;
+				
+				result.push({
+					time: hours + ampm,
+					uvi: forecast[i].uvi
+				});
+				hoursAdded++;
+			}
+		}
+		
+		return result;
+	},
+
 	getUVLevel: function(uvi) {
 		if (uvi <= 2) {
 			return { label: "LOW", class: "low" };
@@ -186,6 +253,9 @@ Module.register("MMM-CurrentUVIndex", {
 	},
 
 	getHeader: function() {
+		if (!this.config.showHeader) {
+			return "";
+		}
 		if (this.config.header) {
 			return this.config.header;
 		}

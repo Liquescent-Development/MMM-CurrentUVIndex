@@ -1,16 +1,18 @@
 .MMM-CurrentUVIndex .uv-index-wrapper {
 	display: flex;
 	flex-direction: column;
-	align-items: flex-start;
+	align-items: center;
 	font-size: 16px;
 	line-height: 1.5;
+	width: 100%;
 }
 
 .MMM-CurrentUVIndex .uv-current {
 	display: flex;
 	align-items: center;
+	justify-content: center;
 	gap: 8px;
-	margin-bottom: 4px;
+	margin-bottom: 8px;
 }
 
 .MMM-CurrentUVIndex .uv-icon {
@@ -58,8 +60,9 @@
 
 .MMM-CurrentUVIndex .uv-forecast {
 	display: flex;
-	flex-direction: column;
-	gap: 4px;
+	flex-direction: row;
+	justify-content: center;
+	gap: 20px;
 	margin-top: 8px;
 	padding-top: 8px;
 	border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -67,16 +70,65 @@
 
 .MMM-CurrentUVIndex .uv-forecast-day {
 	display: flex;
+	flex-direction: column;
 	align-items: center;
-	gap: 12px;
+	gap: 4px;
 	font-size: 14px;
 }
 
 .MMM-CurrentUVIndex .uv-forecast-label {
 	opacity: 0.6;
-	min-width: 30px;
+	text-align: center;
 }
 
 .MMM-CurrentUVIndex .uv-forecast-value {
 	font-weight: 400;
+}
+
+/* Hourly forecast styles */
+.MMM-CurrentUVIndex .uv-hourly {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	gap: 15px;
+	margin-top: 10px;
+	padding-top: 10px;
+	border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.MMM-CurrentUVIndex .uv-hourly-item {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 4px;
+}
+
+.MMM-CurrentUVIndex .uv-hourly-time {
+	font-size: 12px;
+	opacity: 0.6;
+	text-transform: lowercase;
+}
+
+.MMM-CurrentUVIndex .uv-hourly-value {
+	font-size: 16px;
+	font-weight: 400;
+}
+
+/* Compact mode adjustments */
+.MMM-CurrentUVIndex.top_center .uv-index-wrapper,
+.MMM-CurrentUVIndex.bottom_center .uv-index-wrapper {
+	align-items: center;
+}
+
+.MMM-CurrentUVIndex.top_center .uv-current,
+.MMM-CurrentUVIndex.bottom_center .uv-current {
+	font-size: 18px;
+}
+
+.MMM-CurrentUVIndex.top_center .uv-label,
+.MMM-CurrentUVIndex.bottom_center .uv-label {
+	text-transform: uppercase;
+	font-size: 14px;
+	letter-spacing: 1px;
+	opacity: 0.8;
 }

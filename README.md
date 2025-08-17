@@ -61,10 +61,14 @@ Add the following configuration to your `config/config.js` file:
 | `animationSpeed` | Speed of update animations (milliseconds) | Number | `1000` |
 | `showForecast` | Show UV forecast for upcoming days | Boolean | `false` |
 | `forecastDays` | Number of forecast days to display (1-5) | Number | `2` |
+| `showHourly` | Show hourly UV forecast (current + next hours) | Boolean | `true` |
+| `hourlyHours` | Number of future hours to display (1-12) | Number | `4` |
 | `showIcon` | Display sun icon next to UV value | Boolean | `true` |
 | `colored` | Use color coding for UV levels | Boolean | `true` |
 | `roundValue` | Round UV values to nearest integer | Boolean | `false` |
-| `label` | Label text before UV value | String | `"UV"` |
+| `label` | Label text before UV value | String | `"UV INDEX"` |
+| `compactMode` | Use compact layout for center positions | Boolean | `true` |
+| `showHeader` | Show module header | Boolean | `false` |
 | `appendLocationNameToHeader` | Add location name to module header | Boolean | `false` |
 | `locationName` | Name of location for header | String | `""` |
 | `header` | Custom header text (overrides default) | String | `""` |
@@ -83,7 +87,7 @@ Add the following configuration to your `config/config.js` file:
 }
 ```
 
-#### With Forecast
+#### With Daily Forecast
 ```javascript
 {
     module: "MMM-CurrentUVIndex",
@@ -93,6 +97,23 @@ Add the following configuration to your `config/config.js` file:
         longitude: -73.9249,
         showForecast: true,
         forecastDays: 3,
+        showHourly: false,
+        colored: true
+    }
+}
+```
+
+#### With Hourly Forecast (Default)
+```javascript
+{
+    module: "MMM-CurrentUVIndex",
+    position: "top_center",
+    config: {
+        latitude: 40.6943,
+        longitude: -73.9249,
+        showHourly: true,
+        hourlyHours: 4,
+        showForecast: false,
         colored: true
     }
 }
@@ -181,6 +202,16 @@ MIT License - see [LICENSE](LICENSE) file for details.
 Liquescent
 
 ## Changelog
+
+### Version 1.0.1
+- Improved layout for center positions
+- Added horizontal forecast display
+- Added hourly UV forecast (current + next 4 hours)
+- Now displays real-time current UV value from API
+- Added showHourly and hourlyHours configuration options
+- Added compactMode and showHeader options
+- Better space utilization
+- Updated default label to "UV INDEX"
 
 ### Version 1.0.0
 - Initial release

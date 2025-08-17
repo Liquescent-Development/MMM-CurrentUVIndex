@@ -1,0 +1,32 @@
+{
+  "name": "mmm-currentuvindex",
+  "version": "1.0.0",
+  "description": "MagicMirror² module to display UV Index data from currentuvindex.com",
+  "main": "MMM-CurrentUVIndex.js",
+  "scripts": {
+    "lint": "eslint . --ext .js",
+    "lint:fix": "eslint . --ext .js --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liquescent/MMM-CurrentUVIndex.git"
+  },
+  "keywords": [
+    "MagicMirror",
+    "UV Index",
+    "weather",
+    "module"
+  ],
+  "author": "Liquescent",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/liquescent/MMM-CurrentUVIndex/issues"
+  },
+  "homepage": "https://github.com/liquescent/MMM-CurrentUVIndex#readme",
+  "dependencies": {
+    "node-fetch": "^2.6.7"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0"
+  }
+}

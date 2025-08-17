@@ -1,0 +1,147 @@
+.MMM-CurrentUVIndex .uv-index-wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-size: 16px;
+	line-height: 1.5;
+	width: 100%;
+}
+
+.MMM-CurrentUVIndex .uv-current {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	margin-bottom: 12px;
+}
+
+.MMM-CurrentUVIndex .uv-icon {
+	font-size: 18px;
+	opacity: 0.6;
+}
+
+.MMM-CurrentUVIndex .uv-label {
+	opacity: 0.6;
+	margin-right: 4px;
+}
+
+.MMM-CurrentUVIndex .uv-value {
+	font-weight: 400;
+	font-size: 18px;
+	margin-right: 8px;
+}
+
+.MMM-CurrentUVIndex .uv-status {
+	font-size: 14px;
+	opacity: 0.8;
+	padding: 2px 6px;
+	border-radius: 3px;
+}
+
+.MMM-CurrentUVIndex .uv-low {
+	color: #4CAF50;
+}
+
+.MMM-CurrentUVIndex .uv-moderate {
+	color: #FFC107;
+}
+
+.MMM-CurrentUVIndex .uv-high {
+	color: #FF9800;
+}
+
+.MMM-CurrentUVIndex .uv-very-high {
+	color: #F44336;
+}
+
+.MMM-CurrentUVIndex .uv-extreme {
+	color: #9C27B0;
+}
+
+/* Hourly forecast styles */
+.MMM-CurrentUVIndex .uv-hourly {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	gap: 20px;
+	width: auto;
+	margin-top: 0;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-top: 1.5px solid rgba(255, 255, 255, 0.1);
+	border-bottom: 1.5px solid rgba(255, 255, 255, 0.1);
+}
+
+.MMM-CurrentUVIndex .uv-hourly-item {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 4px;
+	min-width: 35px;
+}
+
+.MMM-CurrentUVIndex .uv-hourly-time {
+	font-size: 14px;
+	opacity: 0.6;
+	text-transform: lowercase;
+}
+
+.MMM-CurrentUVIndex .uv-hourly-value {
+	font-size: 16px;
+	font-weight: 400;
+}
+
+/* Daily forecast styles */
+.MMM-CurrentUVIndex .uv-forecast {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	gap: 20px;
+	width: auto;
+	margin-top: 10px;
+	padding-top: 0;
+}
+
+.MMM-CurrentUVIndex .uv-forecast-day {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 4px;
+	font-size: 14px;
+	min-width: 35px;
+}
+
+.MMM-CurrentUVIndex .uv-forecast-label {
+	font-size: 14px;
+	opacity: 0.6;
+	text-align: center;
+}
+
+.MMM-CurrentUVIndex .uv-forecast-value {
+	font-size: 16px;
+	font-weight: 400;
+}
+
+/* When both hourly and forecast are shown */
+.MMM-CurrentUVIndex .uv-hourly + .uv-forecast {
+	margin-top: 10px;
+}
+
+/* Compact mode adjustments */
+.MMM-CurrentUVIndex.top_center .uv-index-wrapper,
+.MMM-CurrentUVIndex.bottom_center .uv-index-wrapper {
+	align-items: center;
+}
+
+.MMM-CurrentUVIndex.top_center .uv-current,
+.MMM-CurrentUVIndex.bottom_center .uv-current {
+	font-size: 18px;
+}
+
+.MMM-CurrentUVIndex.top_center .uv-label,
+.MMM-CurrentUVIndex.bottom_center .uv-label {
+	text-transform: uppercase;
+	font-size: 14px;
+	letter-spacing: 1px;
+	opacity: 0.8;
+}

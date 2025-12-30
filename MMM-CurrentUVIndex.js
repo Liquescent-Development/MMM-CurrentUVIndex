@@ -28,25 +28,42 @@ Module.register("MMM-CurrentUVIndex", {
 		this.uvData = null;
 		this.loaded = false;
 		this.error = null;
-		
+		this.updateTimer = null;
+		this.requestInFlight = false;
+
 		if (this.config.latitude && this.config.longitude) {
-			this.scheduleUpdate();
+			this.scheduleUpdate(0);
 		} else {
 			this.error = "MISSING_COORDS";
 		}
 	},
 
 	scheduleUpdate: function(delay) {
-		var nextLoad = delay || 0;
 		var self = this;
-		
-		setTimeout(function() {
-			self.sendSocketNotification("FETCH_UV_DATA", {
-				latitude: self.config.latitude,
-				longitude: self.config.longitude
-			});
-			self.scheduleUpdate(self.config.updateInterval);
-		}, nextLoad);
+
+		// Clear any existing timer to prevent duplicate loops
+		if (this.updateTimer) {
+			clearTimeout(this.updateTimer);
+			this.updateTimer = null;
+		}
+
+		this.updateTimer = setTimeout(function() {
+			self.fetchData();
+		}, delay);
+	},
+
+	fetchData: function() {
+		// Prevent overlapping requests
+		if (this.requestInFlight) {
+			Log.warn(this.name + ": Request already in flight, skipping");
+			return;
+		}
+
+		this.requestInFlight = true;
+		this.sendSocketNotification("FETCH_UV_DATA", {
+			latitude: this.config.latitude,
+			longitude: this.config.longitude
+		});
 	},
 
 	getDom: function() {
@@ -300,26 +317,30 @@ Module.register("MMM-CurrentUVIndex", {
 	},
 
 	socketNotificationReceived: function(notification, payload) {
+		this.requestInFlight = false;
+
 		if (notification === "UV_DATA") {
 			this.uvData = payload;
 			this.loaded = true;
 			this.error = null;
 			this.updateDom(this.config.animationSpeed);
+			// Schedule next regular update
+			this.scheduleUpdate(this.config.updateInterval);
 		} else if (notification === "UV_ERROR") {
-			this.error = "FETCH_ERROR";
-			this.updateDom(this.config.animationSpeed);
-			this.scheduleUpdate(this.config.retryDelay);
+			// Only update error state if we don't have existing data
+			// This keeps showing stale data rather than an error message
+			if (!this.loaded) {
+				this.error = "FETCH_ERROR";
+				this.updateDom(this.config.animationSpeed);
+			}
+			// Schedule next regular update - backoff is handled server-side
+			// Do NOT use retryDelay here as the server already retried with backoff
+			this.scheduleUpdate(this.config.updateInterval);
 		}
 	},
 
 	notificationReceived: function(notification, payload, sender) {
-		if (notification === "MODULE_DOM_CREATED") {
-			if (this.config.latitude && this.config.longitude) {
-				this.sendSocketNotification("FETCH_UV_DATA", {
-					latitude: this.config.latitude,
-					longitude: this.config.longitude
-				});
-			}
-		}
+		// No action needed - updates are scheduled in start()
+		// Removed duplicate fetch from MODULE_DOM_CREATED that caused multiple request streams
 	}
 });
